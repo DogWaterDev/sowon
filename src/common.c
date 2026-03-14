@@ -112,7 +112,7 @@ void parse_hex_color_code(Color *container, char *code) {
     container->green = -1;
     container->blue = -1;
     if (strlen(code) != 6) {
-	printf("Invalid hexademical string enter for color, defaulting to 0!");
+	printf("WARNING: Invalid hexademical string enter for color, defaulting to 0!\n");
 	return;
     }
     int cur = 0;
@@ -139,19 +139,19 @@ void parse_colors_from_args(Color *background_color, Color *pause_color, Color *
     for (int i = 1; i < argc; ++i) {
         if (strcmp(argv[i], "--background-color") == 0) {
 	    if (i+1 == argc) {
-		fprintf(stderr,"No background color supplied, but flag used!");
+		fprintf(stderr,"ERROR: No background color supplied, but flag used!\n");
 		exit(1);
 	    }
             parse_hex_color_code(background_color, argv[i+1]);
 	} else if (strcmp(argv[i], "--pause-color") == 0) {
 	    if (i+1 == argc) {
-		fprintf(stderr,"No pause color supplied, but flag used!");
+		fprintf(stderr,"ERROR: No pause color supplied, but flag used!\n");
 		exit(1);
 	    }
             parse_hex_color_code(pause_color, argv[i+1]);
 	} else if (strcmp(argv[i], "--main-color") == 0) {
 	    if (i+1 == argc) {
-		fprintf(stderr,"No main color supplied, but flag used!");
+		fprintf(stderr,"ERROR: No main color supplied, but flag used!\n");
 		exit(1);
 	    }
             parse_hex_color_code(main_color, argv[i+1]);
